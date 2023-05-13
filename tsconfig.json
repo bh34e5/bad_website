@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "nodenext",
+        "target": "es6"
+    },
+    "files": [
+        "index.ts"
+    ],
+    "include": ["snake/*"]
+}
