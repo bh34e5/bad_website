@@ -1,5 +1,7 @@
 import { CanvasType } from "./wrappers/index.js";
 
+type Dimensions = { width: number, height: number };
+
 class GameGrid {
     private _rows: number;
     private _cols: number;
@@ -53,6 +55,10 @@ class GameGrid {
                 color
             );
         }
+    }
+
+    get dimensions(): Dimensions {
+        return { width: this._cols, height: this._rows };
     }
 }
 

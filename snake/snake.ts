@@ -113,6 +113,17 @@ class Snake {
         }
         return false;
     }
+
+    contains(pos: Position): boolean {
+        let curr: BodyPart = this._snakeBody.head;
+        while (curr != null) {
+            if (curr.x === pos.x && curr.y === pos.y) {
+                return true;
+            }
+            curr = curr.next;
+        }
+        return false;
+    }
 }
 
 export default Snake;

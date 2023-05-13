@@ -1,4 +1,4 @@
-import { Snake, MoveDirection, GameGrid } from "./index.js"
+import { Snake, Apple, MoveDirection, GameGrid } from "./index.js"
 import { GameCanvas } from "./wrappers/index.js"
 
 type GameState = "startup" | "running" | "paused" | "ended";
@@ -24,6 +24,7 @@ class SnakeGame {
     private _prevGameState: GameState;
     private _gameStateObj: GameStateObj;
     private _keyPressQueue: MoveDirection[];
+    private _currApple: Apple;
 
     private _gameGrid: GameGrid;
     private _snake: Snake;
@@ -61,6 +62,14 @@ class SnakeGame {
         this._snake = new Snake(
             PIXELS_PER_TILE,
             { x: gridSideWidth, y: gridSideWidth }
+        );
+        this._currApple = Apple.fromBoardAndSnakeAndSettings(
+            this._gameGrid,
+            this._snake,
+            {
+                pixelsPerTile: PIXELS_PER_TILE,
+                padding: { x: gridSideWidth, y: gridSideWidth }
+            }
         );
 
         this._canv = new GameCanvas(this._gameContainer);
@@ -174,6 +183,7 @@ class SnakeGame {
         );
         this._gameGrid.drawOn(this._canv, "lightgray");
         this._snake.drawOn(this._canv, "green");
+        this._currApple.drawOn(this._canv, "red");
 
         console.log("painting");
         // END DEBUG
